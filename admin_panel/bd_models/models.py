@@ -38,14 +38,9 @@ def transform_media(path: str) -> str:
 
 def image_display(image_link: str) -> SafeText:
 ####
-'''
-1
-'''
     if str(image_link).startswith(('http://', 'https://')):
         return mark_safe(f'<img src="{image_link}" width="80%" />')
-        '''
-        1
-        '''
+
 ####    
     return mark_safe(f'<img src="/media/{transform_media(image_link)}" width="80%" />')
     
