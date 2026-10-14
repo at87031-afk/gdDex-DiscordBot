@@ -38,12 +38,18 @@ def transform_media(path: str) -> str:
 
 def image_display(image_link: str) -> SafeText:
 ####
-    if str(image_link).startswith(('http://', 'https://')):
-        return mark_safe(f'<img src="{image_link}" width="80%" />')
-        print("idk")
+    link_str = str(image_link).strip()
+        
+    # Check if it's already a full web URL link
+    if link_str.startswith(('http://', 'https://')):
+        return mark_safe(f'<img src="{link_str}" width="80%" />')
+    print("--- DEBUGGING URL STREAM ---")
+    print(f"Raw image_link object: {image_link}")
+    print(f"Converted link_str text: {link_str}")
+    print("----------------------------")
+
 
 ####    
-    print(str(image_link))
     return mark_safe(f'<img src="/media/{transform_media(image_link)}" width="80%" />')
     
 
