@@ -346,7 +346,7 @@ class BallSpawnView(LayoutView):
                     embed.set_image(url=image_str)
                     #self.message = await channel.send(content=spawn_message, embed=embed, view=self)
                     self.message = await channel.send(              
-                        view=self, file=discord.File(self.model.wild_card, filename=file_name)
+                        view=self, file=discord.File(str(self.model.wild_card), filename=file_name)
                     )
                     print("HTTP RAN")
                 else:
