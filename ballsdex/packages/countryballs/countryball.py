@@ -344,10 +344,12 @@ class BallSpawnView(LayoutView):
                     # If it's a URL, send it as a plain link or embed (No discord.File!)
                     embed = discord.Embed()
                     embed.set_image(url=image_str)
-                    #self.message = await channel.send(content=spawn_message, embed=embed, view=self)
+                    self.message = await channel.send(content=spawn_message, embed=embed, view=self)
+                    '''
                     self.message = await channel.send(              
                         view=self, file=discord.File(str(self.model.wild_card), filename=file_name)
                     )
+                    '''
                     print("HTTP RAN")
                 else:
                     self.message = await channel.send(              
