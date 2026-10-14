@@ -324,12 +324,27 @@ class BallSpawnView(LayoutView):
                 #print(str(self.model.wild_card.path))
                 image_str = str(self.model.wild_card).strip()
                 image_str2 = str(self.model.wild_card)
-            
+                print("debug")
+                print("with.path")
+                print(str(self.model.wild_card.path))
+                #print()
+                print("")
+                
+                print("without.path UNstripped")
+                print(str(self.model.wild_card))
+                print(image_str2)
+                print("")
+                
+                print("without.path stripped")
+                print(str(self.model.wild_card).strip())
+                print(image_str)
+
                 if image_str.startswith(("http://", "https://")) or image_str2.startswith(("http://", "https://")):
                     # If it's a URL, send it as a plain link or embed (No discord.File!)
                     embed = discord.Embed()
                     embed.set_image(url=image_str)
                     self.message = await channel.send(content=spawn_message, embed=embed, view=self)
+                    
                 else:
                     self.message = await channel.send(              
                         content=spawn_message, view=self, file=discord.File(self.model.wild_card.path, filename=file_name)
