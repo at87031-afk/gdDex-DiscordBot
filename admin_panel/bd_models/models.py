@@ -40,8 +40,10 @@ def image_display(image_link: str) -> SafeText:
 ####
     if str(image_link).startswith(('http://', 'https://')):
         return mark_safe(f'<img src="{image_link}" width="80%" />')
+        print("idk")
 
 ####    
+    print(str(image_link))
     return mark_safe(f'<img src="/media/{transform_media(image_link)}" width="80%" />')
     
 
