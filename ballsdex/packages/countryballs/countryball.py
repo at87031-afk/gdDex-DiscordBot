@@ -342,15 +342,28 @@ class BallSpawnView(LayoutView):
 
                 if image_str.startswith(("http://", "https://")) or image_str2.startswith(("http://", "https://")):
                     # If it's a URL, send it as a plain link or embed (No discord.File!)
+                    '''
                     embed = discord.Embed()
                     embed.set_image(url=image_str)
                     self.message = await channel.send(content=spawn_message, embed=embed, view=self)
+                    '''
+
+                    
                     '''
                     self.message = await channel.send(              
                         view=self, file=discord.File(str(self.model.wild_card), filename=file_name)
                     )
                     '''
+                    print("--- IF BLOCK STARTED ---")  # Your debug line
+        
+                    #  FORCIBLY CREATE A BRAND NEW, CLEAN EMBED TO WIPE OVER THE HIDDEN CACHE
+                    clean_embed = discord.Embed()
+                    clean_embed.set_image(url=image_str)
+                    
+                    # Pass the clean_embed here instead of the old 'embed' variable
+                    self.message = await channel.send(content=spawn_message, embed=clean_embed, view=self)
                     print("HTTP RAN")
+                    
                 else:
                     self.message = await channel.send(              
                         view=self, file=discord.File(self.model.wild_card.path, filename=file_name)
