@@ -320,11 +320,20 @@ class BallSpawnView(LayoutView):
                 )
                 await self.build(spawn_message, file_name, channel.guild.id)
 
-                print("debug")
-                print(str(self.model.wild_card.path))
-                self.message = await channel.send(              
-                    view=self, file=discord.File(self.model.wild_card.path, filename=file_name)
-                )
+                #print("debug")
+                #print(str(self.model.wild_card.path))
+                image_str = str(self.model.wild_card).strip()
+                image_str2 = str(self.model.wild_card)
+            
+                if image_str.startswith(("http://", "https://")) or image_str2.startswith(("http://", "https://")):
+                    # If it's a URL, send it as a plain link or embed (No discord.File!)
+                    embed = discord.Embed()
+                    embed.set_image(url=image_str)
+                    self.message = await channel.send(content=spawn_message, embed=embed, view=self)
+                else:
+                    self.message = await channel.send(              
+                        content=spawn_message, view=self, file=discord.File(self.model.wild_card.path, filename=file_name)
+                    )
                 return True
             else:
                 log.warning("Missing permission to spawn ball in channel %s.", channel)
