@@ -321,7 +321,7 @@ class BallSpawnView(LayoutView):
                 await self.build(spawn_message, file_name, channel.guild.id)
 
                 print("debug")
-                print(str(self.model.wild_card))
+                print(str(self.model.wild_card.path))
                 self.message = await channel.send(              
                     view=self, file=discord.File(self.model.wild_card.path, filename=file_name)
                 )
