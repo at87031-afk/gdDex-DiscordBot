@@ -50,7 +50,7 @@ def image_display(image_link: str) -> SafeText:
 
 
 ####    
-    return mark_safe(f'<img src="/media/{transform_media(image_link)}" width="80%" />')
+    return mark_safe(f'<img src="/median/{transform_media(image_link)}" width="80%" />')
     
 
 
