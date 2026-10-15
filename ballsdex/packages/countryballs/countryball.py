@@ -277,7 +277,7 @@ class BallSpawnView(LayoutView):
         if spawn_message:
             self.add_item(TextDisplay(spawn_message))
                 
-        if not str(self.model.wild_card).strip().startswith(("http://", "https://")) or str(self.model.wild_card).startswith(("http://", "https://")):            
+        if not (str(self.model.wild_card).strip().startswith(("http://", "https://")) or str(self.model.wild_card).startswith(("http://", "https://"))):            
             print("ATTACHMENT")
             self.add_item(MediaGallery(discord.MediaGalleryItem(f"attachment://{file_name}")))
         else:
