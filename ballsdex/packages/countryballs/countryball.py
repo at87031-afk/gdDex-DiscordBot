@@ -282,6 +282,7 @@ class BallSpawnView(LayoutView):
             self.add_item(MediaGallery(discord.MediaGalleryItem(f"attachment://{file_name}")))
         else:
             print("NO ATTACHMENT")
+            self.add_item(MediaGallery(discord.MediaGalleryItem(str(self.model.wild_card).strip())))
 
         tip_item: Item[LayoutView] | None = None
         if tip := await self.get_tip(guild_id):
@@ -370,7 +371,7 @@ class BallSpawnView(LayoutView):
                     
                     # Pass the clean_embed here instead of the old 'embed' variable
                     #self.message = await channel.send(content=spawn_message, embed=clean_embed, view=self)
-                    self.message = await channel.send(embed=clean_embed, view=self)
+                    self.message = await channel.send(view=self)
                     print("HTTP RAN")
                     
                 else:
