@@ -369,7 +369,8 @@ class BallSpawnView(LayoutView):
                         self.file = None
                     
                     # Pass the clean_embed here instead of the old 'embed' variable
-                    self.message = await channel.send(content=spawn_message, embed=clean_embed, view=self)
+                    #self.message = await channel.send(content=spawn_message, embed=clean_embed, view=self)
+                    self.message = await channel.send(embed=clean_embed, view=self)
                     print("HTTP RAN")
                     
                 else:
