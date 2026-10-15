@@ -277,9 +277,11 @@ class BallSpawnView(LayoutView):
         if spawn_message:
             self.add_item(TextDisplay(spawn_message))
                 
-        if not (image_str.startswith(("http://", "https://")) or image_str2.startswith(("http://", "https://"))):
+        if not str(self.model.wild_card).strip().startswith(("http://", "https://")) or str(self.model.wild_card).startswith(("http://", "https://")):            
             print("ATTACHMENT")
             self.add_item(MediaGallery(discord.MediaGalleryItem(f"attachment://{file_name}")))
+        else:
+            print("NO ATTACHMENT")
 
         tip_item: Item[LayoutView] | None = None
         if tip := await self.get_tip(guild_id):
