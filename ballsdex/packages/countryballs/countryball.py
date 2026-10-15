@@ -359,6 +359,9 @@ class BallSpawnView(LayoutView):
                     #  FORCIBLY CREATE A BRAND NEW, CLEAN EMBED TO WIPE OVER THE HIDDEN CACHE
                     clean_embed = discord.Embed()
                     clean_embed.set_image(url=image_str)
+
+                    if hasattr(self, 'file'):
+                        self.file = None
                     
                     # Pass the clean_embed here instead of the old 'embed' variable
                     self.message = await channel.send(content=spawn_message, embed=clean_embed, view=self)
